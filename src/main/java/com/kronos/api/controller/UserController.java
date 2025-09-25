@@ -26,58 +26,58 @@ import com.kronos.api.service.UserService;
 @CrossOrigin("http://localhost:4200")
 public class UserController {
 
-	@Autowired
-	private UserService service;
+    @Autowired
+    private UserService service;
 
-	@PostMapping("/login-user")
-	public User loginUser(@RequestBody LoginRequest request) {
-		
-		return service.loginUser(request);
-	}
+    @PostMapping("/login-user")
+    public User loginUser(@RequestBody LoginRequest request) {
 
-		@CrossOrigin(methods = RequestMethod.POST)
-		@PostMapping("/register-user")
-		public ResponseEntity<Integer> registerUser(@RequestBody User user) {
-			User registerUser = service.registerUser(user);
-			if (registerUser != null) {
-				return new ResponseEntity<Integer>(1, HttpStatus.CREATED);
-			} else {
-				return new ResponseEntity<Integer>(3, HttpStatus.OK);
-			}
-		}
+        return service.loginUser(request);
+    }
 
-	@GetMapping("/get-user-by-username/{username}")
-	public User getUserById(@PathVariable String username) {
-		return service.getUserByName(username);
+    @CrossOrigin(methods = RequestMethod.POST)
+    @PostMapping("/register-user")
+    public ResponseEntity<Integer> registerUser(@RequestBody User user) {
+        User registerUser = service.registerUser(user);
+        if (registerUser != null) {
+            return new ResponseEntity<Integer>(1, HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<Integer>(3, HttpStatus.OK);
+        }
+    }
 
-	}
+    @GetMapping("/get-user-by-username/{username}")
+    public User getUserById(@PathVariable String username) {
+        return service.getUserByName(username);
 
-	@GetMapping("/get-all-user")
-	public List<User> getAllUser() {
-		return service.getAllUser();
+    }
 
-	}
-	
-	@GetMapping("/get-all-admin")
-	public List<User> getAllAdmins(){
-	return service.getAllAdmins();
-	}
-	
-	@GetMapping("/get-all-faculty")
-	public List<User> getAllFaculties(){
-	return service.getAllFaculties();
-	}
+    @GetMapping("/get-all-user")
+    public List<User> getAllUser() {
+        return service.getAllUser();
 
-	@DeleteMapping("/delete-user-by-username")
-	public String deleteUserById(@RequestParam String username) {
-		return service.deleteUserById(username);
+    }
 
-	}
+    @GetMapping("/get-all-admin")
+    public List<User> getAllAdmins() {
+        return service.getAllAdmins();
+    }
 
-	@PutMapping("/update-user")
-	public User updateUser(@RequestBody User user) {
-		return service.updateUser(user);
+    @GetMapping("/get-all-faculty")
+    public List<User> getAllFaculties() {
+        return service.getAllFaculties();
+    }
 
-	}
+    @DeleteMapping("/delete-user-by-username")
+    public String deleteUserById(@RequestParam String username) {
+        return service.deleteUserById(username);
+
+    }
+
+    @PutMapping("/update-user")
+    public User updateUser(@RequestBody User user) {
+        return service.updateUser(user);
+
+    }
 
 }
